@@ -62,6 +62,7 @@ class TikiReviewCrawler:
                     except NoSuchElementException:
                         review = element.text
 
+                    review.replace('(*) Đánh giá không tính điểm', '')
                     if review != '' or review.strip():
                         reviews.append([review, type])
                 
@@ -202,7 +203,7 @@ if __name__ == '__main__':
         num_products: Number of products in each category page
         review_pages: Number of review pages in each product page
     """
-    review_crawler = TikiReviewCrawler(num_categories=20, num_products=2, review_pages=10)
+    review_crawler = TikiReviewCrawler(num_categories=21, num_products=10, review_pages=10)
     url = 'https://tiki.vn/'
     review_list = review_crawler.get_review_list(url=url)
     save_to_csv(review_list)

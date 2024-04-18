@@ -1,3 +1,4 @@
+import numpy as np
 import csv
 from .data_prepropressing import preprocessing
 
@@ -15,4 +16,4 @@ def prepare_data():
                 x_data.append(word_list)
                 y_data.append(label)
     
-    return x_data, y_data
+    return np.array(x_data), np.array(y_data)

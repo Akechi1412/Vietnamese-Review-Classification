@@ -15,3 +15,22 @@ def plot_reviews_data(data):
     plt.ylabel('Quantity')
     plt.title('Statistics on the number of words in the data')
     plt.show()
+
+def plot_history_model(history):
+    # Plot history loss
+    plt.figure(figsize=(10, 6))
+    plt.plot(history.history['loss'], label='train loss')
+    plt.plot(history.history['val_loss'], label='val loss')
+    plt.xlabel("epoch")
+    plt.ylabel("Cross-entropy loss")
+    plt.legend()
+    plt.show()
+
+    # Plot history accuracy
+    plt.figure(figsize=(10, 6))
+    plt.plot(history.history['accuracy'], label='train accuracy')
+    plt.plot(history.history['val_accuracy'], label='val accuracy')
+    plt.xlabel("epoch")
+    plt.ylabel("accuracy")
+    plt.legend()
+    plt.show()

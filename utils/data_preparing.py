@@ -8,7 +8,9 @@ def prepare_data():
         reader = csv.reader(file)
         
         for row in reader:
-            x_data.append(preprocessing(row[0]))
+            word_list = preprocessing(row[0])
+            if len(word_list) > 0:
+                x_data.append(word_list)
             y_data.append(int(row[1]))
     
     return x_data, y_data

@@ -36,7 +36,8 @@ def normalize_abbreviations(word_list):
         'dc': 'được',
         'đc': 'được',
         'ctrinh': 'chương trình',
-        'kmai': 'khuyến mãi'
+        'kmai': 'khuyến mãi',
+        'sd': 'sử dụng'
     }
 
     normalized_word_list = [abbreviations.get(word, word) for word in word_list]

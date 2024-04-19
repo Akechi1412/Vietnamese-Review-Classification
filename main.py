@@ -4,15 +4,8 @@ from keras.preprocessing.sequence import pad_sequences
 import pickle
 import numpy as np
 
-def predict_sentiment(text):
-    """
-        0: positive
-        1: negative
-        2: neutral
-    """
-    word_list = preprocessing(text)
-    if len(word_list) == 0:
-        return 2
+if __name__ == '__main__':
+    word_list = preprocessing('tuyệt vời')
     model = load_model('./models/review_model.h5')
 
     tokenizer = None
@@ -24,8 +17,14 @@ def predict_sentiment(text):
     padded_sequence = pad_sequences(sequence, maxlen=max_len)
 
     prediction = model.predict(padded_sequence)
-    prediction = np.argmax(prediction, axis=1)[0]
+    prediction = np.argmax(prediction, axis=1)
+    positive_count = np.sum(prediction == 0)
+    negative_count = np.sum(prediction == 1)
+    neutral_count = np.sum(prediction == 2)
 
-    return prediction
-
-print(predict_sentiment('Sp bthg'))
+    if positive_count > negative_count and positive_count > neutral_count:
+        print('Positive')
+    elif negative_count > positive_count and negative_count > neutral_count:
+        print('Negative')
+    else:
+        print('Neutral')
